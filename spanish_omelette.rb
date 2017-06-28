@@ -50,10 +50,10 @@ steps = [
   { description: "Scrape potatoes", action: "scrape_potatoes" },
   { description: "Cut potatoes in thick slices", action: "cut_potatoes" },
   { description: "Chop the onion", action: "generic_recipe_step" },
-  { description: "Geat the oil in a large frying pan", action: "generic_recipe_step" },
+  { description: "Heat the oil in a large frying pan", action: "generic_recipe_step" },
   { description: "Add potatoes to the pan", action: "add_potatoes_to_pan" },
   { description: "Add onion to the pan", action: "generic_recipe_step" },
-  { description: "Strain potatoes and onions througha colander into a large bowl", action: "generic_recipe_step" },
+  { description: "Strain potatoes and onions through a colander into a large bowl", action: "generic_recipe_step" },
   { description: "Break the eggs", action: "break_eggs" },
   { description: "Beat the eggs seperatly", action: "generic_recipe_step" },
   { description: "Stir into the bowl the potatoes with plenty of salt", action: "generic_recipe_step" },
@@ -115,4 +115,17 @@ end
 
     answer.upcase == 'Y'
   end
-  
+
+  steps.each_with_index do |step, index|
+    print_divider
+
+    loop do
+      ready = ask_if_ready(step, index)
+      break if ready
+
+      puts "OK, i will give you some extra time."
+      print_progress_bar
+    end
+
+    send(step[:action])
+  end
