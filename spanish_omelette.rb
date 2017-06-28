@@ -129,3 +129,6 @@ end
 
     send(step[:action])
   end
+
+  print_divider
+  puts "Listo! Enjoy your meal!"
