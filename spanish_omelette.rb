@@ -29,7 +29,7 @@ ingredients.each do |ingredient|
 end
 
 loop do
-  puts "/n"
+  puts "\n"
   print_divider
 
   puts "Got all the ingredients you need? (Y/N)"
